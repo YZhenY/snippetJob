@@ -11,4 +11,8 @@ client.connect(function(err) {
   }
 });
 
+client.getSnippets = function(scenario, segment) {
+    //get all snippets for segment from database
+}
+
 module.exports = client;

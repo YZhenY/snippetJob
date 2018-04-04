@@ -1,4 +1,4 @@
 module.exports = {
     scenario: 'linkedInOpeners',
-    pipeline: ["intro", "raport", "callToAction"],
+    pipeline: ["header", "intro", "raport", "callToAction", "footer"],
 }
