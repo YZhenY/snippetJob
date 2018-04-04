@@ -1,5 +1,5 @@
 module.exports = {
-    header: ["Dear Sir/Madam, APPLICATION FOR ${company} – ${position}"],
+    header: ["Dear Sir/Madam,", "APPLICATION FOR ${company} – ${position}"],
     intro: ["I came across your job description for a ${position}, and I am very excited to apply!"],
     compliment:[ 
         " ${company} is lauded as a firm poised to bring ${technology} technology to implementation.",

@@ -1,6 +1,6 @@
 var db = require('./db/db.js');
 
-class EngineInstance {
+class Controller {
     constructor(scenarios, database) {
         this.scenarios = scenarios;
         this.database = database;

@@ -1,7 +1,7 @@
 const path = require('path');
 const BUILD_DIR = path.resolve(__dirname, 'dist');
 const APP_DIR = path.resolve(__dirname, 'src');
-
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 var config = {
   entry: [APP_DIR + '/index.js'],
@@ -22,8 +22,22 @@ var config = {
           'style-loader',
           'css-loader'
         ]
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader"
+          }
+        ]
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: APP_DIR + '/index.html',
+      filename: "./index.html"
+    })
+  ]
 };
 module.exports = config;
