@@ -30,6 +30,7 @@ class EngineInstance {
     //called when transaction is finished, logs data 
     endPipeline(id, feedback) {
         this.requestLog[id]['completed'] = true;
+        this.requestLog[id]['data'] = feedback;
     }
 
     //gather database calls
@@ -50,8 +51,6 @@ class EngineInstance {
         })
     }
 
-
-
 }
 
 class Template {
@@ -59,11 +58,11 @@ class Template {
         this.id = id;
         this.currentText = "";
         this.completed = false;
+        this.data;
     }
 
     addSegment(segment) {
         this.currentText += segment;
     }
-
 
 }
