@@ -23,8 +23,8 @@ A templating engine for job hunting documents (e.g. CVs, cold emails, linkedIn .
         " ${company} is lauded as a firm poised to bring ${technology} technology to implementation.",
         " Aside from its vibrant, dynamic environment in which leading minds interact to create unprecedented solutions, ${company} stands out to me due to its forward day-to-day working style. These factors motivate me to strive towards joining the firm, and also to be outstanding within the firm to contribute to these opportunities.",
         ], 
-    selfPromotion: [],
-    callToAction: [],
-    footer: [],
+    selfPromotion: ["I am a full stack software developer and I would like to join Coinbase in an internship with the aim of eventually joining your firm in changing the way the world works through blockchain, while inching towards my goal of effecting social change."],
+    callToAction: ["I look forward to speaking with you regarding this opportunity. Please refer to the enclosed resume for a more complete view of my background and qualifications. I can be contacted at yong.zhen.yu.1993@gmail.com or +65 81828667."],
+    footer: ["Sincerely, ${name}"],
 }
 ```
