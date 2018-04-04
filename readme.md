@@ -1,8 +1,8 @@
-#SnippetJobs Proposal
+# SnippetJobs Proposal
 
 A templating engine for job hunting documents (e.g. CVs, cold emails, linkedIn ...)
 
-##Three different strategies:
+## Three different strategies:
     1. Simple category templating simlar to above
     2. Within longer segments split that into a build tree which builds on phrases;
     sequential structure (each node given a number, numbers determing which rank it can be, 
@@ -10,7 +10,7 @@ A templating engine for job hunting documents (e.g. CVs, cold emails, linkedIn .
     3. Same as above but instead of sequential structure, nodes connect to every one of the other nodes
     creating a graph like structure with scores according to what follows
 
-##How to think about this?
+## How to think about this?
     - Amount of data i can EXPECT to have from feedback.... MOST EFFCIENT WITH WHAT I HAVE
     - SCALABILITY
     - Clear issues with links?
