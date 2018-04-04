@@ -1,4 +1,4 @@
 module.exports = {
     scenario: 'coverLetter',
-    pipeline: ["header", "start", "compliment", "selfPromotion", "callToAction", "footer"],
+    pipeline: ["header", "intro", "compliment", "selfPromotion", "callToAction", "footer"],
 }

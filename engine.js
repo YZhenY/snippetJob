@@ -32,8 +32,6 @@ class EngineInstance {
         this.requestLog[id]['completed'] = true;
     }
 
-
-
     //gather database calls
     getSnippets(scenario, pipeline) {
         return new Promise ((resolve, reject) => {
