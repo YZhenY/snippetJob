@@ -45,7 +45,9 @@ class InputSnippet extends React.Component {
             <div>
                 {stateIndexes.map((index) => {
                     return (
-                        <Input value={this.state[index]} onChange={this.handleChange.bind(this, index)}></Input>
+                        <div>{index}
+                            <Input value={this.state[index]} onChange={this.handleChange.bind(this, index)}></Input>
+                        </div>
                     )
                 })}
                 <Button onClick={this.submitSnippet.bind(this)}>Submit</Button>
