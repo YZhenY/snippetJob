@@ -14,11 +14,10 @@ app.use(express.static(__dirname + '/../dist'));
 app.post('/input', function (req, res) {
     // console.log(req.body);
 
-    templateEngineApi.inputSnippet(req.body.scenario, req.body.segment, req.body.order, req.body.id, req.body.order);
+    templateEngineApi.inputSnippet(req.body.scenario, req.body.segment, req.body.order, req.body.id, req.body.text);
     res.status(200);
     res.end();
 })
-
 
 app.listen(3000, function (err) {
     if (err) throw err;

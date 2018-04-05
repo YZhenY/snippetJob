@@ -7,7 +7,7 @@ const Phrase = require('./phraseNode.js');
 class Engine {
     constructor() {
         this.database = db;
-        console.log("this is db", db)
+        // console.log("this is db", db)
         this.scenarios = scenarios;
 
     }
