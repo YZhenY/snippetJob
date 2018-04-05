@@ -1,9 +1,9 @@
-var db = require('./db/db.js');
+const Engine = require('./engine.js');
+
 
 class Controller {
-    constructor(scenarios, database) {
-        this.scenarios = scenarios;
-        this.database = database;
+    constructor() {
+        this.engineInstance = Engine;
         this.countTemplate = 0;
         this.requestLog = {};
     }
@@ -20,10 +20,10 @@ class Controller {
                 pipeline: pipeline,
             };
             //get data from pipeline and add it to the response
-            this.getSnippets(scenario, pipeline).then(result => {
+            this.engineInstance.getSnippets(scenario, pipeline).then(result => {
                 responseData['data'] = result;
                 resolve(result);
-            })
+            });
         })
     }
 
@@ -33,22 +33,9 @@ class Controller {
         this.requestLog[id]['data'] = feedback;
     }
 
-    //gather database calls
-    getSnippets(scenario, pipeline) {
-        return new Promise ((resolve, reject) => {
-            var count = 0;
-            var data = {};
-            for (var i = 0; i < pipeline.length; i ++) {
-                db.getSnippets(scenario, pipeline[i])
-                .then(result => {
-                    count++;
-                    data[pipeline[i]] = result;
-                    if (count === pipeline.length) {
-                        resolve(data);
-                    }
-                }).catch(err => console.log(err));
-            }
-        })
+    //for the input page
+    inputSnippet(scenario, segment, order, id, text) {
+        this.engineInstance.inputSnippet(scenario, segment, order, id, text)
     }
 
 }
@@ -66,3 +53,5 @@ class Template {
     }
 
 }
+
+module.exports = new Controller();

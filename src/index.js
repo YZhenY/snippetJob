@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Input, Button} from 'semantic-ui-react'
+import {Header, Input, Button} from 'semantic-ui-react'
+import InputSnippet from './components/inputSnippet.jsx';
 
 class App extends React.Component {
     constructor() {
@@ -13,8 +14,8 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Input></Input>
-                <Button>Submit</Button>
+                <Header>ITS THE TEMPLATE</Header>
+                <InputSnippet />
             </div>
         )
     }
