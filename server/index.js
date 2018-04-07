@@ -13,10 +13,19 @@ app.use(express.static(__dirname + '/../dist'));
 
 app.post('/input', function (req, res) {
     // console.log(req.body);
-
     templateEngineApi.inputSnippet(req.body.scenario, req.body.segment, req.body.order, req.body.id, req.body.text);
     res.status(200);
     res.end();
+})
+
+app.post('/startTemplate', function (req, res) {
+    var scenario = req.body.scenario;
+    templateEngineApi.startPipeline(scenario)
+    .then(result => {
+        // console.log(result);
+        res.json(result);
+    })
+    .catch(err => console.log(err));
 })
 
 app.listen(3000, function (err) {

@@ -11,18 +11,14 @@ class Controller {
     //draw parts from db and send over the choices
     startPipeline(scenario) {
         return new Promise ((resolve, reject) => {
-            var pipeline = this.scenarios[scenario].pipeline;
+
             var template = new Template(this.countTemplate);
             this.requestLog[template.id] = template;
             this.countTemplate ++;
-            var responseData = {
-                scenario: scenario,
-                pipeline: pipeline,
-            };
             //get data from pipeline and add it to the response
-            this.engineInstance.getSnippets(scenario, pipeline).then(result => {
-                responseData['data'] = result;
+            this.engineInstance.getSnippets(scenario).then(result => {
                 resolve(result);
+                console.log(`Number of Templates: ${this.countTemplate}`)
             });
         })
     }

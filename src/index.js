@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Header, Input, Button} from 'semantic-ui-react'
 import InputSnippet from './components/inputSnippet.jsx';
+import TemplateForm from './components/templateForm.jsx';
 
 class App extends React.Component {
     constructor() {
@@ -16,6 +17,7 @@ class App extends React.Component {
             <div>
                 <Header>ITS THE TEMPLATE</Header>
                 <InputSnippet />
+                <TemplateForm />
             </div>
         )
     }
