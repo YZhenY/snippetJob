@@ -2,12 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Header, Input, Button, Segment, TextArea} from 'semantic-ui-react'
 import UserInput from './userInput.jsx';
+import Display from './display.jsx';
 
 
 class TemplateForm extends React.Component {
     constructor() {
         super();
         this.state = {
+            displaySegment:'header',
+            displaySnippets: [],
             inputResults: {},
             requiredInputs: [],
             result: '',
@@ -57,6 +60,10 @@ class TemplateForm extends React.Component {
         })
     }
 
+    changeDisplay() {
+        
+    }
+
     createInputs () {
         // console.log('Create Inputs called')
         var regex = /\$\{.*?\}/g
@@ -89,6 +96,7 @@ class TemplateForm extends React.Component {
     render() {
         return (
             <div id='template-form-container'>
+                <Display segment={this.state.displaySegment} snippets={this.state.displaySnippets} handleSnippetClick={this.handleSelection}/>
                 {
                     Array.prototype.map.call(this.state.snippetData['pipeline'], (segment, index) => {
                         return (
@@ -107,6 +115,7 @@ class TemplateForm extends React.Component {
                         )
                     })
                 }
+
                 <UserInput handleInputs={this.handleInputs} inputResults={this.state.inputResults} inputsRequired={this.state.requiredInputs} />
                 <Button onClick={this.parsedOutput}>Parse Output</Button> 
                 <TextArea id='template-form-output-box' autoHeight style={{ minHeight: 100, }} placeholder='Your document outputs here!' value={this.state.result}></TextArea>
