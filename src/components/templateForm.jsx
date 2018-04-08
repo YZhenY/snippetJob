@@ -9,6 +9,8 @@ class TemplateForm extends React.Component {
     constructor() {
         super();
         this.state = {
+            curSegment: 0,
+            curPhase:0,
             displaySegment:'header',
             displaySnippets: [],
             inputResults: {},
@@ -19,8 +21,12 @@ class TemplateForm extends React.Component {
                 data: [],
             },
         }
+
         this.addToResult = this.addToResult.bind(this);
-        this.handleSelection = this.handleSelection.bind(this);
+        this.handleStorySelection = this.handleStorySelection.bind(this);
+        this.handleSimpleSelection = this.handleSimpleSelection.bind(this);
+        this.segmentDisplay = this.segmentDisplay.bind(this);
+        this.snippetDisplay = this.snippetDisplay.bind(this);
         this.createInputs = this.createInputs.bind(this);
         this.handleInputs = this.handleInputs.bind(this);
         this.parsedOutput = this.parsedOutput.bind(this);
@@ -52,7 +58,7 @@ class TemplateForm extends React.Component {
         })
     }
     
-    handleSelection (e) {
+    handleSimpleSelection (e) {
         e.target.style['borderColor'] = 'blue';
         // console.log('Handle Selection called')
         this.addToResult(e.target.innerText).then(()=> {
@@ -60,10 +66,24 @@ class TemplateForm extends React.Component {
         })
     }
 
-    changeDisplay() {
+    //CODE FOR "STORY" DISPLAY PIPELINES
+    handleStorySelection (e) {
+        this.addToResult(e.target.innerText);
+        this.setState({curPhase: curPhase += 1});
         
     }
 
+    segmentDisplay() {
+        return this.state.snippetData.pipeline[this.state.curSegment];
+    }
+
+    snippetDisplay() {
+        var snippetsForPhase = this.state.snippetData.data[this.state.curSegment] || [];
+        snippetsForPhase = snippetsForPhase.filter((snippetObj) => Number(snippetObj['order']) === this.state.curPhase);
+        return snippetsForPhase;
+    }
+
+    //BELOW IS CODE FOR HANDLING USER INPUT VARIABLES
     createInputs () {
         // console.log('Create Inputs called')
         var regex = /\$\{.*?\}/g
@@ -78,7 +98,7 @@ class TemplateForm extends React.Component {
 
     handleInputs (index, event) {
         var newState = {... this.state.inputResults};
-        newState[index] = event.target.value
+        newState[index] = event.target.value;
         this.setState({inputResults: newState});
     }
 
@@ -96,7 +116,7 @@ class TemplateForm extends React.Component {
     render() {
         return (
             <div id='template-form-container'>
-                <Display segment={this.state.displaySegment} snippets={this.state.displaySnippets} handleSnippetClick={this.handleSelection}/>
+                <Display segment={this.segmentDisplay()} snippets={this.snippetDisplay()} handleSnippetClick={this.handleStorySelection}/>
                 {
                     Array.prototype.map.call(this.state.snippetData['pipeline'], (segment, index) => {
                         return (
@@ -105,7 +125,7 @@ class TemplateForm extends React.Component {
                             {
                                 Array.prototype.map.call(this.state.snippetData.data[index], (snippet, snippetIndex) => {
                                     return (
-                                        <Segment key={segment + snippetIndex} onClick={this.handleSelection}>
+                                        <Segment key={segment + snippetIndex} onClick={this.handleSimpleSelection}>
                                             {snippet.text} 
                                         </Segment>
                                     )
@@ -115,7 +135,6 @@ class TemplateForm extends React.Component {
                         )
                     })
                 }
-
                 <UserInput handleInputs={this.handleInputs} inputResults={this.state.inputResults} inputsRequired={this.state.requiredInputs} />
                 <Button onClick={this.parsedOutput}>Parse Output</Button> 
                 <TextArea id='template-form-output-box' autoHeight style={{ minHeight: 100, }} placeholder='Your document outputs here!' value={this.state.result}></TextArea>
