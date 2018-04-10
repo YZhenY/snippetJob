@@ -35,6 +35,11 @@ class Controller {
         this.engineInstance.inputSnippet(scenario, segment, order, id, text)
     }
 
+    //For initial homepage
+    getScenarios() {
+        return this.engineInstance.getScenarios();
+    }
+
 }
 
 class Template {
@@ -45,6 +50,7 @@ class Template {
         this.data;
     }
 
+    //Methods to be built out for HMC
     addSegment(segment) {
         this.currentText += segment;
     }

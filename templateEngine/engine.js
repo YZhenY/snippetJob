@@ -36,6 +36,10 @@ class Engine {
         })
     }
 
+    getScenarios() {
+        return Object.keys(this.scenarios);
+    }
+
 }
 
 module.exports = new Engine();

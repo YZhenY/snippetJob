@@ -18,9 +18,24 @@ app.post('/input', function (req, res) {
     res.end();
 })
 
+app.get('/scenarios', function(req, res) {
+    res.json(templateEngineApi.getScenarios())
+})
+
 app.post('/startTemplate', function (req, res) {
     var scenario = req.body.scenario;
     templateEngineApi.startPipeline(scenario)
+    .then(result => {
+        // console.log(result);
+        res.json(result);
+    })
+    .catch(err => console.log(err));
+})
+
+//WIP
+app.post('/endTemplate', function (req, res) {
+    var scenario = req.body.scenario;
+    templateEngineApi.endPipeline(id, feedback)
     .then(result => {
         // console.log(result);
         res.json(result);
