@@ -17,6 +17,7 @@ class Controller {
             this.countTemplate ++;
             //get data from pipeline and add it to the response
             this.engineInstance.getSnippets(scenario).then(result => {
+                result['template_id'] = template.id;
                 resolve(result);
                 console.log(`Number of Templates: ${this.countTemplate}`)
             });

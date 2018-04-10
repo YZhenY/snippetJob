@@ -14,7 +14,7 @@ class Display extends React.Component {
             {
                 Array.prototype.map.call(this.props.snippets, (snippet, snippetIndex) => {
                     return (
-                        <Segment key={this.props.segment + snippetIndex} onClick={this.handleSelection}>
+                        <Segment key={snippet._id} onClick={this.props.handleSnippetClick}>
                             {snippet.text} 
                         </Segment>
                     )
