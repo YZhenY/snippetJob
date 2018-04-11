@@ -24,23 +24,28 @@ class App extends React.Component {
     }
 
     handleScenarioSelection (e) {
-        this.setState({chosenScenario: e.target.value});
+        this.setState({chosenScenario: e.target.innerText});
     }
 
     render() {
-        return (
-            <div>
-                <Header>What do you need?</Header>
-                    {
-                        this.state.scenarios.map(scenario => {
-                            return (
-                                <Button onClick={this.handleScenarioSelection}>{scenario}</Button>
-                            )
-                        })
-                    }
-                <TemplateForm />
-            </div>
-        )
+        if (!this.state.chosenScenario) {
+            return (
+                    <div>
+                        <Header>What do you need?</Header>
+                            {
+                                this.state.scenarios.map(scenario => {
+                                    return (
+                                        <Button onClick={this.handleScenarioSelection}>{scenario}</Button>
+                                    )
+                                })
+                            }
+                    </div>
+                )
+        } else {
+            return (
+                <TemplateForm scenario={this.state.chosenScenario} />
+            )
+        }
     }
 }
 

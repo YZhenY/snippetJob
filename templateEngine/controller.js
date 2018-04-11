@@ -12,7 +12,7 @@ class Controller {
     startPipeline(scenario) {
         return new Promise ((resolve, reject) => {
 
-            var template = new Template(this.countTemplate);
+            var template = new Template(this.countTemplate, scenario);
             this.requestLog[template.id] = template;
             this.countTemplate ++;
             //get data from pipeline and add it to the response
@@ -28,6 +28,7 @@ class Controller {
     endPipeline(id, feedback) {
         this.requestLog[id]['completed'] = true;
         this.requestLog[id]['data'] = feedback;
+        this.engineInstance.logTemplate(this.requestLog[id]);
     }
 
     //for the input page
@@ -39,12 +40,12 @@ class Controller {
     getScenarios() {
         return this.engineInstance.getScenarios();
     }
-
 }
 
 class Template {
-    constructor(id) {
+    constructor(id, scenario) {
         this.id = id;
+        this.scenario = scenario;
         this.currentText = "";
         this.completed = false;
         this.data;

@@ -81,9 +81,9 @@ class TemplateForm extends React.Component {
     }
 
     //CODE FOR "STORY" DISPLAY PIPELINES
-    handleStorySelection (e) {
+    handleStorySelection (key, e) {
         this.addToResult(e.target.innerText);
-        this.log[this.state.curSegment][this.state.curPhase] = e.target.key;
+        this.log[this.state.curSegment][this.state.curPhase] = key;
         this.setState({curPhase: this.state.curPhase += 1});
     }
 
@@ -162,16 +162,29 @@ class TemplateForm extends React.Component {
         })
         console.log(parsedOutput)
         console.log(this.log);
+        fetch('/endTemplate', {
+            body: JSON.stringify({feedback:this.log, id: this.state.snippetData.template_id}), // must match 'Content-Type' header
+            headers: {
+              'content-type': 'application/json'
+            },
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, cors, *same-origin
+            redirect: 'follow', // *manual, follow, error
+            referrer: 'no-referrer', // *client, no-referrer
+          })
+          .then(response => console.log(response)) // parses response to JSON
+          .catch(err => console.log( 'Error submitting input',err));
         return parsedOutput;
     }
-
+    
     render() {
+        //<Button onClick={this.handleMoreSnippets}>More Snippets</Button>
         return (
             <div id='template-form-container'>
                 <Display segment={this.segmentDisplay()} snippets={this.snippetDisplay()} handleSnippetClick={this.handleStorySelection} />
-                <TextArea id='template-new-snippet-box' onChange={this.handleNewSnippetChange} autoHeight style={{ minHeight: 80, }} placeholder='Or create your own snippet here' value={this.state.inputSnippet}></TextArea>
+                <TextArea id='template-new-snippet-box' onChange={this.handleNewSnippetChange} autoHeight style={{ minHeight: 18.85,}} placeholder='Or create your own snippet here (use ${abc} format for variables' value={this.state.inputSnippet}></TextArea>
                 <Button onClick={this.handleNextSegment}>Next Segment</Button>
-                <Button onClick={this.handleMoreSnippets}>More Snippets</Button>
+
                 <Button onClick={this.handleSnippetSubmission}>Create Snippet</Button>
                 <Button onClick={this.parsedOutput}>Parse Output</Button> 
                 <UserInput handleInputs={this.handleInputs} inputResults={this.state.inputResults} inputsRequired={this.state.requiredInputs} />

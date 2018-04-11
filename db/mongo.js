@@ -40,6 +40,18 @@ class API {
             }
         })
     }
+
+    logTemplate(template) {
+        var collection = this.db.collection('logs');
+        template.datetime = Date.now();
+        collection.insertOne(template, function(err) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Logged complete template');
+            }
+        });
+    }
 }
 
 //intializing

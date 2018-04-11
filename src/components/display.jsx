@@ -6,6 +6,10 @@ class Display extends React.Component {
     constructor(props) {
         super();
     }
+
+    addOnKeyToHandler(key, e) {
+        this.props.handleSnippetClick(key, e);
+    }
     
     render() {
         return (
@@ -14,7 +18,7 @@ class Display extends React.Component {
             {
                 Array.prototype.map.call(this.props.snippets, (snippet, snippetIndex) => {
                     return (
-                        <Segment key={snippet._id} onClick={this.props.handleSnippetClick}>
+                        <Segment key={snippet._id} onClick={this.addOnKeyToHandler.bind(this, snippet._id)}>
                             {snippet.text} 
                         </Segment>
                     )

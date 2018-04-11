@@ -34,13 +34,10 @@ app.post('/startTemplate', function (req, res) {
 
 //WIP
 app.post('/endTemplate', function (req, res) {
-    var scenario = req.body.scenario;
-    templateEngineApi.endPipeline(id, feedback)
-    .then(result => {
-        // console.log(result);
-        res.json(result);
-    })
-    .catch(err => console.log(err));
+    var id = req.body.id;
+    var feedback = req.body.feedback;
+    templateEngineApi.endPipeline(id, feedback);
+    res.end();
 })
 
 app.listen(3000, function (err) {

@@ -36,6 +36,10 @@ class Engine {
         })
     }
 
+    logTemplate(template) {
+        db.logTemplate(template);
+    }
+
     getScenarios() {
         return Object.keys(this.scenarios);
     }
