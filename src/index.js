@@ -27,10 +27,15 @@ class App extends React.Component {
         this.setState({chosenScenario: e.target.innerText});
     }
 
+    handleLinkedInLogIn (e) {
+
+    }
+
     render() {
         if (!this.state.chosenScenario) {
             return (
                     <div>
+                        <script type="in/Login"></script>
                         <Header>What do you need?</Header>
                             {
                                 this.state.scenarios.map(scenario => {

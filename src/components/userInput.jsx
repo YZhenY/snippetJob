@@ -13,7 +13,7 @@ class UserInput extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id='template-form-user-input'>
                 {
                     this.props.inputsRequired.map(singleInput => {
                         return (
