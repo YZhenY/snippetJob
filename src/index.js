@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Header, Input, Button} from 'semantic-ui-react'
+import {Header, Input, Button, Menu} from 'semantic-ui-react'
 import InputSnippet from './components/inputSnippet.jsx';
 import TemplateForm from './components/templateForm.jsx';
 
@@ -32,25 +32,33 @@ class App extends React.Component {
     }
 
     render() {
+        var content;
         if (!this.state.chosenScenario) {
-            return (
+            content = (
                     <div>
                         <script type="in/Login"></script>
                         <Header>What do you need?</Header>
+                        <Menu>
                             {
                                 this.state.scenarios.map(scenario => {
                                     return (
-                                        <Button onClick={this.handleScenarioSelection}>{scenario}</Button>
+                                        <Menu.Item onClick={this.handleScenarioSelection}>{scenario}</Menu.Item>
                                     )
                                 })
                             }
+                        </Menu>
                     </div>
                 )
         } else {
-            return (
+            content = (
                 <TemplateForm scenario={this.state.chosenScenario} />
             )
         }
+        return (
+            <div className="content">
+                {content}
+            </div>
+        )
     }
 }
 
